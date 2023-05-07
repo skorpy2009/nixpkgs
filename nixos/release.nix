@@ -21,7 +21,10 @@ let
   allTestsForSystem = system:
     import ./tests/all-tests.nix {
       inherit system;
-      pkgs = import ./.. { inherit system; };
+      pkgs = import ./.. {
+        inherit system;
+        config.allowAliases = false;
+      };
       callTest = config: {
         ${system} = hydraJob config.test;
       };
