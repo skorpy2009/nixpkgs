@@ -46,7 +46,7 @@ let
   inherit
     (rec {
       doRunTest = arg: ((import ../lib/testing-python.nix { inherit system pkgs; }).evalTest {
-        imports = [ arg ];
+        imports = [ arg readOnlyPkgs ];
       }).config.result;
       findTests = tree:
         if tree?recurseForDerivations && tree.recurseForDerivations
